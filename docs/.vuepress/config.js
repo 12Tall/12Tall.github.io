@@ -19,8 +19,10 @@ module.exports = {
         // search: false,
         // searchMaxSuggestions: 10,
         nav: [
-            { text: 'About', link: '/pages/About.md' },
-            { text: 'Front Matter', link: '/pages/front_matter.md' }
+            { text: 'Notes', link: '/pages/notes/' },
+            { text: 'Blogs', link: '/pages/blogs/' },
+            { text: 'About', link: '/pages/about/' },
+            // { text: 'Front Matter', link: '/pages/front_matter.md' }
         ],
 
         // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL

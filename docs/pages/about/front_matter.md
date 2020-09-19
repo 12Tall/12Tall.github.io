@@ -2,7 +2,6 @@
 title: Front Matter
 lang: en-US
 sidebar: auto  
-prev: /pages/About.md
 next: false
 tags: 
     - 配置
