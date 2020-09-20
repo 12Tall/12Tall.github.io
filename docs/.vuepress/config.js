@@ -21,7 +21,7 @@ module.exports = {
         nav: [
             { text: 'Notes', link: '/pages/notes/' },
             { text: 'Blogs', link: '/pages/blogs/' },
-            { text: 'About', link: '/pages/about/' },
+            { text: '关于', link: '/pages/about/' },
             // { text: 'Front Matter', link: '/pages/front_matter.md' }
         ],
 

@@ -1,8 +1,7 @@
 ---
-title: Song of Myself
+title: 关于
 ---
-
-Is there a village inside this snowflake?  
-a child aske me  
-What's the colour of our lullaby?
+<center>  
+蝉噪林逾静 鸟鸣山更幽
+</center>
 
