@@ -68,7 +68,10 @@ export default{
         self.time++;
       }
     },500);
-  }
+  },    
+  destroyed: function () {
+    clearInterval(this.interval);
+  }, 
 }
 </script>
 
