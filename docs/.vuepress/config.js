@@ -43,8 +43,9 @@ module.exports = {
             '@vuepress/nprogress',  //网页加载进度条
             '@vuepress/plugin-back-to-top', //返回页面顶部按钮
         ]
-    }
+    },
 
+    plugins: ['@vuepress/back-to-top']
 
 
 }
