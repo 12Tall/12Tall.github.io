@@ -4,10 +4,11 @@ sidebar: auto
 ---  
 # Notes  
 ## 数据处理  
-- [Matplotlib](./数据处理/matplotlib/README.md)
+- [Matplotlib](./数据处理/matplotlib/README.md)  
 
 ## 前端  
-- [AudioContext](前端/AudioContext.md)  
+- [AudioContext](./前端/AudioContext.md)  
+- [Canvas](./前端/Canvas.md)  
 
 ## 开发运维  
 - [shell](./开发运维/shell.md)  
