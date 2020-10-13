@@ -9,6 +9,7 @@ sidebar: auto
 
 ## 开发运维  
 - [WebHook 自动化部署](./开发运维/WebHook自动化部署.md)  
+- [Hyper-V](./开发运维/hyper-v/README.md)  
 
 ## 胡思乱想  
 - [答案](胡思乱想/答案.md)
