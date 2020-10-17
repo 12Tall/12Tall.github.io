@@ -19,7 +19,12 @@ module.exports = {
         // search: false,
         // searchMaxSuggestions: 10,
         nav: [
-            { text: 'Notes', link: '/pages/notes/' },
+            {
+                text: 'Notes', items: [                    
+                    { text: '开发', link: '/pages/notes/dev/' },
+                    { text: '运维', link: '/pages/notes/o_m/' },
+                ]
+            },
             { text: 'Blogs', link: '/pages/blogs/' },
             { text: '关于', link: '/pages/about/' },
             // { text: 'Front Matter', link: '/pages/front_matter.md' }
