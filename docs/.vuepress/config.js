@@ -20,9 +20,10 @@ module.exports = {
         // searchMaxSuggestions: 10,
         nav: [
             {
-                text: 'Notes', items: [                    
+                text: 'Notes', items: [
                     { text: '开发', link: '/pages/notes/dev/' },
                     { text: '运维', link: '/pages/notes/o_m/' },
+                    { text: 'C++', link: '/pages/notes/cpp/' },
                 ]
             },
             { text: 'Blogs', link: '/pages/blogs/' },
@@ -43,14 +44,17 @@ module.exports = {
         smoothScroll: true, //页面滚动效果
 
 
-        plugins: [
-            '@vuepress/medium-zoom',    //zooming images like Medium（页面弹框居中显示）
-            '@vuepress/nprogress',  //网页加载进度条
-            '@vuepress/plugin-back-to-top', //返回页面顶部按钮
-        ]
     },
 
-    plugins: ['@vuepress/back-to-top']
+    plugins: [
+        '@vuepress/medium-zoom',    //zooming images like Medium（页面弹框居中显示）
+        '@vuepress/nprogress',  //网页加载进度条
+        '@vuepress/plugin-back-to-top', //返回页面顶部按钮
+        ['@vuepress/active-header-links', {
+            sidebarLinkSelector: '.sidebar-link',
+            headerAnchorSelector: '.header-anchor'
+        }]
+    ]
 
 
 }
