@@ -4,11 +4,12 @@ sidebar: auto
 ---  
 
 # 开发  
-## Node  
+## Javascript  
 - [AudioContext](./audiocontext/README.md)  
 - [Canvas](./canvas/README.md) 
 - [WebSocket](./websocket/README.md)   
 - [Shell](./shell/README.md)  
+- [在网页中加载文件](./loadfile/README.md)
 
 
 ## Python  
