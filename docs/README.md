@@ -1,106 +1,242 @@
 ---
-title: 🌼
+title: 🌼 100'
 ---
  
-<div>
-<p class="timer" key="first">{{day}} {{fix(hour)}}:{{fix(minute)}}:{{fix(seccond)}}
-</p>
+<audio id="bgm" src="http://aod.cos.tx.xmcdn.com/group19/M0B/49/C4/wKgJJlfvshmyBtfhABa3wlvQii4856.mp3" loop></audio>
+
+<div v-if="show">
+  <div class="main">
+    <ul class="container">
+      <li class="item"></li>
+      <li class="item"></li>
+      <li class="item"></li>
+      <li class="item"></li>
+      <li class="item"></li>
+      <li class="item"></li>
+      <li class="item"></li>
+      <li class="item"></li>
+      <li class="item"></li>
+      <li class="item"></li>
+    </ul>
+  </div>
+  <div class="days">
+    <span>D</span>
+    <span>a</span>
+    <span>y</span>
+    <span> 💕 </span>
+    <span>1</span>
+    <span>0</span>
+    <span>0</span>
+  </div>
+  <div class="text">
+    <div class="content left" style="--i:1;">静女其姝，俟我于城隅</div>
+    <div class="content left" style="--i:2;">爱而不见，搔首踟蹰</div>
+    <div class="content right" style="--i:3;">——《诗经 · 邶风》</div>
+    <div class="content" style="--i:4;"></div>
+    <div class="content" style="--i:4;"> ✿ ❀ ✿ </div>
+    <div class="content" style="--i:4;"></div>
+    <div class="content" style="--i:5;">Hi 爱雨的女孩</div>
+    <div class="content" style="--i:6;">我们已经认识100 天了呢</div>
+    <div class="content" style="--i:7;">从 <i>你也喜欢雨天？</i> 开始</div>
+    <div class="content" style="--i:8;">好想再多了解这位小可爱</div>
+    <div class="content" style="--i:9;">有才，又帅气</div>
+    <div class="content" style="--i:10;">文静，又调皮</div>
+    <div class="content" style="--i:11;">笑起来超好看</div>
+    <div class="content" style="--i:12;"></div>
+    <div class="content" style="--i:12;"> ❀ ✿ ❀ </div>
+    <div class="content" style="--i:12;"></div>
+    <div class="content" style="--i:13;">My Love</div>
+    <div class="content" style="--i:14;">You Make Me Feel Brand New</div>
+    <div class="content" style="--i:15;">2020.11.08</div>
+  </div>
+</div>
+<div style="text-align:center;" v-else="show" @click="play">
+  <div>点我点我</div>
+  <div>(●ˇ∀ˇ●)</div>
 </div>
 
-`2020-09-05:  青岛初见`  
-`2020-07-31:  (｡･∀･)ﾉﾞ嗨`  
 
------
+<style lang="stylus" scoped>
+.main{
+  padding-top: 10vh;
+  display: flex;
+  justify-content: center;
+}
 
-<div class="koto">
-<span>回望当初</span><br/> 
-<span>那时我也一定一直在 训练自己迈步</span><br/> 
-<span>如果有一天</span><br/> 
-<span>能够走得更稳更远了</span><br/> 
-<span>...</span><br/> 
-<span>就去见她吧</span><br/>  
-</div>
-    
+.container{
+  position: relative;
+  display: flex;
+  height:180px;
+  list-style-type:none;
+}
+
+.item {
+  width: 20px;
+  height:20px;
+  border-radius: 10px;
+  margin: 0 5px 0 5px;
+}
+
+.item:nth-child(1) {
+  background-color: red ;
+  animation: love1 5s 0.2s infinite;
+}
+.item:nth-child(2) {
+  background-color: darkturquoise ;
+  animation: love2 5s 0.4s infinite;
+}
+.item:nth-child(3) {
+  background-color: darksalmon ;
+  animation: love3 5s 0.6s infinite;
+}
+.item:nth-child(4) {
+  background-color: deeppink ;
+  animation: love4 5s 0.8s infinite;
+}
+.item:nth-child(5) {
+  background-color: yellowgreen ;
+  animation: love5 5s 1s infinite;
+}
+.item:nth-child(6) {
+  background-color: deeppink ;
+  animation: love4 5s 1.2s infinite;
+}
+.item:nth-child(7) {
+  background-color: darksalmon ;
+  animation: love3 5s 1.4s infinite;
+}
+.item:nth-child(8) {
+  background-color: darkturquoise ;
+  animation: love2 5s 1.6s infinite;
+}
+.item:nth-child(9) {
+  background-color: red ;
+  animation: love1 5s 1.6s infinite;
+}
+
+@keyframes love1{
+  30%,50%{
+    height:60px;
+    transform: translateY(-30px);
+  }
+  70%,100%{
+    height:20px;
+    transform: translateY(0);
+  }
+}
+@keyframes love2{
+  30%,50%{
+    height:125px;
+    transform: translateY(-60px);
+  }
+  70%,100%{
+    height:20px;
+    transform: translateY(0);
+  }
+}
+@keyframes love3{
+  30%,50%{
+    height:160px;
+    transform: translateY(-75px);
+  }
+  70%,100%{
+    height:20px;
+    transform: translateY(0);
+  }
+}
+@keyframes love4{
+  30%,50%{
+    height:180px;
+    transform: translateY(-60px);
+  }
+  70%,100%{
+    height:20px;
+    transform: translateY(0);
+  }
+}
+@keyframes love5{
+  30%,50%{
+    height:200px;
+    transform: translateY(-40px);
+  }
+  70%,100%{
+    height:20px;
+    transform: translateY(0);
+  }
+}
+
+
+.days{
+  display:flex;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bolder;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #F67CD3;
+}
+
+.text {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  margin-top:10px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 16px;  
+}
+
+.content {
+  opacity:0;
+  width: 300px;
+  text-align:center;
+  margin: 5px 5px 5px 5px;
+  animation: show-content 3s calc(1s * var(--i)) 1;
+  animation-fill-mode:forwards;
+  color:#1F6E3C;
+}
+
+.content.left {
+  width: 160px;
+  text-align:left;
+  color: #9581DE;
+}
+
+.content.right {
+  text-align:right;
+  color: #9581DE;
+}
+
+
+
+@keyframes show-content{
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+  }
+}
+
+</style>
+
 <script>
 export default{
   data(){
     return {
-      start:new Date('2020/07/31 16:46:00').getTime(),
-      day:0,
-      hour:0,
-      minute:0,
-      seccond:0,
-      interval:null,
+      bgm:null,
+      show:false,
     }
   },
-  methods:{
-    timediff(){
-      let self = this;
-      let now = new Date().getTime(),
-        leave =  Math.floor((now-self.start)/1000);
-      self.day = Math.floor(leave/86400);
-      leave = leave%(86400);
-      self.hour = Math.floor(leave/3600);
-      leave = leave%(3600);
-      self.minute = Math.floor(leave/60);
-      leave = leave%(60);
-      self.seccond = leave;
-      self.show = true;
-    },
-    fix(val){
-      return (Array(2).join(0)+val).slice(-2);
+  methods:{    
+    play(){
+      this.bgm =  document.getElementById('bgm');
+      this.show=true;
+      this.bgm.play();
     }
   },
-
   mounted(){
-    let self = this;
-    self.timediff();
-    this.interval = setInterval(()=>{
-      self.timediff();
-    },500);
   },    
-  destroyed: function () {
-    clearInterval(this.interval);
+  destroyed () {
   }, 
 }
 </script>
-
-<style lang="stylus" scoped>
-.koto{
-  background: linear-gradient(to  bottom, #7EE641,#042502);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.slide-fade-enter-active {
-  transition: all 1.5s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
-/* latin */
-@font-face {
-  font-family: 'Cabin Sketch';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local('Cabin Sketch Bold'), local('CabinSketch-Bold'), url(https://fonts.gstatic.com/s/cabinsketch/v14/QGY2z_kZZAGCONcK2A4bGOj0I_1Y5tjz.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-.timer{
-  display:inline-block
-  font-size: 60px;
-  margin:0;
-  /* latin */
-	font-family:'Cabin Sketch';
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(to right, #B2101D, #B2101D, #FAA04A, #FAA04A, #628AD1, #628AD1, #FAA04A, #FAA04A, #B2101D, #B2101D); /* 标准的语法（必须放在最后） */
-
-}
-</style>
