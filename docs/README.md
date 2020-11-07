@@ -33,21 +33,41 @@ title: 🌼 100'
     <div class="content left" style="--i:2;">爱而不见，搔首踟蹰</div>
     <div class="content right" style="--i:3;">——《诗经 · 邶风》</div>
     <div class="content" style="--i:4;"></div>
-    <div class="content" style="--i:4;"> ✿ ❀ ✿ </div>
     <div class="content" style="--i:4;"></div>
-    <div class="content" style="--i:5;">Hi 爱雨的女孩</div>
-    <div class="content" style="--i:6;">我们已经认识100 天了呢</div>
-    <div class="content" style="--i:7;">从 <i>你也喜欢雨天？</i> 开始</div>
-    <div class="content" style="--i:8;">好想再多了解这位小可爱</div>
-    <div class="content" style="--i:9;">有才，又帅气</div>
-    <div class="content" style="--i:10;">文静，又调皮</div>
-    <div class="content" style="--i:11;">笑起来超好看</div>
-    <div class="content" style="--i:12;"></div>
-    <div class="content" style="--i:12;"> ❀ ✿ ❀ </div>
-    <div class="content" style="--i:12;"></div>
-    <div class="content" style="--i:13;">My Love</div>
-    <div class="content" style="--i:14;">You Make Me Feel Brand New</div>
-    <div class="content" style="--i:15;">2020.11.08</div>
+    <div class="content" style="--i:4;"> ❀ ✿ ❀ </div>
+    <div class="content" style="--i:4;"></div>
+    <div class="content" style="--i:5;">(｡･∀･)ﾉﾞ嗨~</div>
+    <div class="content" style="--i:6;"></div>
+    <div class="content" style="--i:7;">不知不觉，现在</div>
+    <div class="content" style="--i:8;">已经是我们认识的第 100 天了</div>
+    <div class="content" style="--i:9;">虽然只有 “一面之缘”</div>
+    <div class="content" style="--i:10;">但仍从心底里希望</div>
+    <div class="content" style="--i:11;">能继续了解屏幕前美好的你</div>
+    <div class="content" style="--i:12;">也希望能成为更棒的自己</div>
+    <div class="content" style="--i:13;"></div>
+    <div class="content" style="--i:14;"></div>
+    <div class="content" style="--i:14;"> ❀ ✿ ❀ </div>
+    <div class="content" style="--i:14;"></div>
+    <div class="content" style="--i:15;">说来惭愧</div>
+    <div class="content" style="--i:16;">一直告诉自己要成熟稳重、彬彬有礼</div>
+    <div class="content" style="--i:17;">在你面前却总是失了分寸</div>
+    <div class="content" style="--i:18;">希望不会对你造成困扰</div>
+    <div class="content" style="--i:19;">努力做一个体贴的人</div>
+    <div class="content" style="--i:20;">静待花开</div>
+    <div class="content" style="--i:21;"></div>
+    <div class="content" style="--i:22;"></div>
+    <div class="content" style="--i:22;"> ❀ ✿ ❀ </div>
+    <div class="content" style="--i:22;"></div>
+    <div class="content" style="--i:23;">第一次做动态的页面</div>
+    <div class="content" style="--i:24;">想知道你是否会喜欢呢</div>
+    <div class="content" style="--i:25;">今后</div>
+    <div class="content" style="--i:26;">请多指教</div>
+    <div class="content" style="--i:27;"></div>
+    <div class="content" style="--i:27;"></div>
+    <div class="content" style="--i:27;"></div>
+    <div class="content" style="--i:27;"></div>
+    <div class="content" style="--i:27;"></div>
+    <div class="content" style="--i:27;">2020.11.08</div>
   </div>
 </div>
 <div style="text-align:center;" v-else="show" @click="play">
@@ -190,9 +210,10 @@ title: 🌼 100'
   width: 300px;
   text-align:center;
   margin: 5px 5px 5px 5px;
-  animation: show-content 3s calc(1s * var(--i)) 1;
+  animation: show-content 3s calc(1.2s * var(--i)) 1;
   animation-fill-mode:forwards;
   color:#1F6E3C;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .content.left {
