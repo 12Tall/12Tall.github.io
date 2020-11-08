@@ -9,7 +9,9 @@ sidebar: auto
 - [Canvas](./canvas/README.md) 
 - [WebSocket](./websocket/README.md)   
 - [Shell](./shell/README.md)  
-- [在网页中加载文件](./loadfile/README.md)
+- [在网页中加载文件](./loadfile/README.md)  
+- 示波器  
+  - [01 canvas 显示正弦波](./oscilloscope/01.md)
 
 
 ## Python  
