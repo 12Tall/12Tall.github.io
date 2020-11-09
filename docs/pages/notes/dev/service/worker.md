@@ -15,7 +15,7 @@ tags:
 ## 简单示例
 ### 创建项目    
 首先需要安装`.netcore 3.0` 及以上的开发环境   
-```shell
+```bash
 # 1. 创建Worker 项目  
 dotnet new worker  # 此命令会创建两个类`Program.cs`, `Worker.cs` 后面介绍  
 
@@ -26,7 +26,7 @@ dotnet run  # 每隔一秒打印当前时间
 ### 部署项目  
 1. 要部署到项目中，需要添加额外的Nuget 包  
 
-```shell
+```bash
 # Windows 
 dotnet add package Microsoft.Extensions.Hosting.WindowsServices  
 
@@ -46,7 +46,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 ```  
 
 3. 发布部署  
-```shell  
+```bash  
 # 3.1 发布项目
 dotnet publish  -c Release -o {path}  
 

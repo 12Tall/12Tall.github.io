@@ -10,8 +10,7 @@ sidebar: auto
 - [WebSocket](./websocket/README.md)   
 - [Shell](./shell/README.md)  
 - [在网页中加载文件](./loadfile/README.md)  
-- 示波器  
-  - [01 canvas 显示正弦波](./oscilloscope/01.md)
+- [log4js](./log4js/README.md)
 
 
 ## Python  
@@ -22,7 +21,11 @@ sidebar: auto
 - [CHIP-8](./vm/chip-8/README.md)  
 - [x86](./vm/x86/README.md)  
 
-## C#  
-- [.NetCore 开发Windows 服务](./worker/README.md)
-  
+## Windows 服务  
+- [.NetCore 开发Windows 服务](./service/worker.md)
+- [node-windows](./service/node-windows.md)
+
+
+## 示波器  
+- [01 canvas 显示正弦波](./oscilloscope/01.md)
 
