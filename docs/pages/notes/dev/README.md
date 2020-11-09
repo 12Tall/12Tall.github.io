@@ -21,5 +21,8 @@ sidebar: auto
 ## 虚拟机  
 - [CHIP-8](./vm/chip-8/README.md)  
 - [x86](./vm/x86/README.md)  
+
+## C#  
+- [.NetCore 开发Windows 服务](./worker/README.md)
   
 

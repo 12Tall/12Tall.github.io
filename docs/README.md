@@ -1,276 +1,23 @@
 ---
-title: 🌼 100'
+title: 🌼
 ---
- 
-<audio id="bgm" src="http://aod.cos.tx.xmcdn.com/group19/M0B/49/C4/wKgJJlfvshmyBtfhABa3wlvQii4856.mp3" loop></audio>
-
-<div v-if="show">
-  <div class="main">
-    <ul class="container">
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-    </ul>
-  </div>
-  <div class="days">
-    <span>D</span>
-    <span>a</span>
-    <span>y</span>
-    <span> 💕 </span>
-    <span>1</span>
-    <span>0</span>
-    <span>0</span>
-  </div>
-  <div class="text">
-    <div class="content left" style="--i:1;">静女其姝，俟我于城隅</div>
-    <div class="content left" style="--i:2;">爱而不见，搔首踟蹰</div>
-    <div class="content right" style="--i:3;">——《诗经 · 邶风》</div>
-    <div class="content" style="--i:4;"></div>
-    <div class="content" style="--i:4;"></div>
-    <div class="content" style="--i:4;"> ❀ ✿ ❀ </div>
-    <div class="content" style="--i:4;"></div>
-    <div class="content" style="--i:5;">(｡･∀･)ﾉﾞ嗨~</div>
-    <div class="content" style="--i:6;"></div>
-    <div class="content" style="--i:7;">不知不觉，现在</div>
-    <div class="content" style="--i:8;">已经是我们认识的第 100 天了</div>
-    <div class="content" style="--i:9;">虽然只有 “一面之缘”</div>
-    <div class="content" style="--i:10;">但仍从心底里希望</div>
-    <div class="content" style="--i:11;">能继续了解屏幕前美好的你</div>
-    <div class="content" style="--i:12;">也希望能成为更棒的自己</div>
-    <div class="content" style="--i:13;"></div>
-    <div class="content" style="--i:14;"></div>
-    <div class="content" style="--i:14;"> ❀ ✿ ❀ </div>
-    <div class="content" style="--i:14;"></div>
-    <div class="content" style="--i:15;">说来惭愧</div>
-    <div class="content" style="--i:16;">明明要成熟稳重、彬彬有礼的</div>
-    <div class="content" style="--i:17;">却也会失了分寸</div>
-    <div class="content" style="--i:18;">希望不会对你造成困扰</div>
-    <div class="content" style="--i:19;">努力做一个体贴的人</div>
-    <div class="content" style="--i:20;">静待花开</div>
-    <div class="content" style="--i:21;"></div>
-    <div class="content" style="--i:22;"></div>
-    <div class="content" style="--i:22;"> ❀ ✿ ❀ </div>
-    <div class="content" style="--i:22;"></div>
-    <div class="content" style="--i:23;">第一次做动态的页面</div>
-    <div class="content" style="--i:24;">想知道你是否会喜欢呢</div>
-    <div class="content" style="--i:25;">今后还，</div>
-    <div class="content" style="--i:26;">请多指教</div>
-    <div class="content" style="--i:27;"></div>
-    <div class="content" style="--i:27;"></div>
-    <div class="content end" style="--i:27;">- 2020.11.08 -</div>
-  </div>
-</div>
-<div style="text-align:center;" v-else="show" @click="play">
-  <div>点我点我</div>
-  <div>(●ˇ∀ˇ●)</div>
-</div>
 
 
-<style lang="stylus" scoped>
-.main{
-  padding-top: 10vh;
-  display: flex;
-  justify-content: center;
-}
-
-.container{
-  position: relative;
-  display: flex;
-  height:180px;
-  list-style-type:none;
-}
-
-.item {
-  width: 20px;
-  height:20px;
-  border-radius: 10px;
-  margin: 0 5px 0 5px;
-}
-
-.item:nth-child(1) {
-  background-color: red ;
-  animation: love1 5s 0.2s infinite;
-}
-.item:nth-child(2) {
-  background-color: darkturquoise ;
-  animation: love2 5s 0.4s infinite;
-}
-.item:nth-child(3) {
-  background-color: darksalmon ;
-  animation: love3 5s 0.6s infinite;
-}
-.item:nth-child(4) {
-  background-color: deeppink ;
-  animation: love4 5s 0.8s infinite;
-}
-.item:nth-child(5) {
-  background-color: yellowgreen ;
-  animation: love5 5s 1s infinite;
-}
-.item:nth-child(6) {
-  background-color: deeppink ;
-  animation: love4 5s 1.2s infinite;
-}
-.item:nth-child(7) {
-  background-color: darksalmon ;
-  animation: love3 5s 1.4s infinite;
-}
-.item:nth-child(8) {
-  background-color: darkturquoise ;
-  animation: love2 5s 1.6s infinite;
-}
-.item:nth-child(9) {
-  background-color: red ;
-  animation: love1 5s 1.6s infinite;
-}
-
-@keyframes love1{
-  30%,50%{
-    height:60px;
-    transform: translateY(-30px);
-  }
-  70%,100%{
-    height:20px;
-    transform: translateY(0);
-  }
-}
-@keyframes love2{
-  30%,50%{
-    height:125px;
-    transform: translateY(-60px);
-  }
-  70%,100%{
-    height:20px;
-    transform: translateY(0);
-  }
-}
-@keyframes love3{
-  30%,50%{
-    height:160px;
-    transform: translateY(-75px);
-  }
-  70%,100%{
-    height:20px;
-    transform: translateY(0);
-  }
-}
-@keyframes love4{
-  30%,50%{
-    height:180px;
-    transform: translateY(-60px);
-  }
-  70%,100%{
-    height:20px;
-    transform: translateY(0);
-  }
-}
-@keyframes love5{
-  30%,50%{
-    height:200px;
-    transform: translateY(-40px);
-  }
-  70%,100%{
-    height:20px;
-    transform: translateY(0);
-  }
-}
+<div class="koto">
+<span>回望当初</span><br/> 
+<span>那时我也一定一直在 训练自己迈步</span><br/> 
+<span>如果有一天</span><br/> 
+<span>能够走得更稳更远了</span><br/> 
+<span>...</span><br/> 
+<span>就去见她吧</span><br/>  
+</div>  
 
 
-.days{
-  display:flex;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: bolder;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  color: #F67CD3;
-}
+-----  
 
-.text {
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items:center;
-  margin-top:10px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: 16px;  
-}
-
-.content {
-  opacity:0;
-  width: 300px;
-  text-align:center;
-  margin: 5px 5px 5px 5px;
-  animation: show-content 3s calc(1.2s * var(--i)) 1;
-  animation-fill-mode:forwards;
-  color:#1F6E3C;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.content.left {
-  width: 160px;
-  text-align:left;
-  color: #9581DE;
-}
-
-.content.right {
-  text-align:right;
-  color: #9581DE;
-}
-.content.end {
-  font-family:"Comic Sans MS", cursive, sans-serif;
-}
-
-
-@keyframes show-content{
-  0%{
-    opacity:0;
-  }
-  100%{
-    opacity:1;
-  }
-}
-
-</style>
-
-<script>
-export default{
-  data(){
-    return {
-      bgm:null,
-      show:false,
-    }
-  },
-  methods:{    
-    play(){
-      this.bgm =  document.getElementById('bgm');
-      this.show=true;
-      this.bgm.play();
-    }
-  },
-  mounted(){
-  },    
-  destroyed () {
-  }, 
-}
-</script>
-
-<!--
-
------
-
-<center>
-<p class="timer" key="first">Day{{day}} {{fix(hour)}}:{{fix(minute)}}:{{fix(seccond)}}
-</p>
-</center>
-
-
+❀ {{day}} ❀  
+{{fix(hour)}}:{{fix(minute)}}:{{fix(seccond)}}
+    
 <script>
 export default{
   data(){
@@ -314,4 +61,43 @@ export default{
   }, 
 }
 </script>
--->
+
+<style lang="stylus" scoped>
+.koto{
+  background: linear-gradient(to  bottom, #7EE641,#042502);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.slide-fade-enter-active {
+  transition: all 1.5s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+/* latin */
+@font-face {
+  font-family: 'Cabin Sketch';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Cabin Sketch Bold'), local('CabinSketch-Bold'), url(https://fonts.gstatic.com/s/cabinsketch/v14/QGY2z_kZZAGCONcK2A4bGOj0I_1Y5tjz.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+.timer{
+  display:inline-block
+  font-size: 60px;
+  margin:0;
+  /* latin */
+	font-family:'Cabin Sketch';
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #B2101D, #B2101D, #FAA04A, #FAA04A, #628AD1, #628AD1, #FAA04A, #FAA04A, #B2101D, #B2101D); /* 标准的语法（必须放在最后） */
+
+}
+</style>
