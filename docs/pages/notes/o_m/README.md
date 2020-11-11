@@ -3,11 +3,16 @@ title: 运维
 sidebar: auto  
 ---  
 
-# 运维  
+# 运维   
+## Windows Server   
+以下按照配置步骤的先后排序  
+- [DNS 服务器](./windows_server_2019/01_dns.md)  
+- [AD 域](./windows_server_2019/02_ad.md)
+
 ## 路由与交换  
 - [eve-ng安装与镜像导入](./r_s/eve-ng安装与镜像导入.md)  
 
-## CCNA  
+### CCNA  
 - [TCP/IP 基础](./r_s/CCNA/TCP-IP基础.md)
 - [交换机简介](./r_s/CCNA/交换机简介.md)
 - [IP 地址](./r_s/CCNA/IP地址.md)  
