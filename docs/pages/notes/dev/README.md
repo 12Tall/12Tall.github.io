@@ -10,7 +10,8 @@ sidebar: auto
 - [WebSocket](./websocket/README.md)   
 - [Shell](./shell/README.md)  
 - [在网页中加载文件](./loadfile/README.md)  
-- [log4js](./log4js/README.md)
+- [log4js](./log4js/README.md)  
+- [vue-next](./vue-next/README.md)
 
 
 ## Python  

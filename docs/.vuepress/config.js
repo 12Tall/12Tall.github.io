@@ -5,6 +5,8 @@ module.exports = {
 
     //浏览器的标签栏的网页图标,基地址/docs/.vuepress/public
     head: [
+        ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js' }],
+        ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js' }],
         ['link', { rel: 'icon', href: '/favicon.ico' }]
     ],
 
