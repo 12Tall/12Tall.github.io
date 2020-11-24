@@ -5,7 +5,11 @@ sidebar: auto
 # C++  
 
 ## 常见问题  
-- [C 与C++ 互相调用](./C_Cpp互相调用.md)
+- [C 与C++ 互相调用](./C_Cpp互相调用.md)  
+
+## 系统编程  
+- [Mingw 制作dll](./mingw_dll.md)  
+- [远程线程注入dll](./远程线程注入dll.md)
 
 
 

@@ -2,5 +2,5 @@
 title: 🌼
 ---
 
-<effect-water-ripple></effect-water-ripple>
+<effect-timer></effect-timer>
 
