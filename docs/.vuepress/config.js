@@ -8,14 +8,24 @@ module.exports = {
         // 波纹特效
         // ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js' }],
         // ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js' }],
-        ['link', { rel: 'icon', href: '/favicon.ico' }]
+        ['link', { rel: 'icon', href: '/favicon.ico' }],
+        // latex support
+        // ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css' }],
+        ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css' }]
+
     ],
 
+    // https://prismjs.com/#supported-languages
     markdown: {
         lineNumbers: true,   // 代码块左侧显示行号
         toc: {
             includeLevel: [1, 2, 3],
         },
+        // support Katex<inline latex>
+        // https://www.vuepress.cn/guide/markdown.html#%E8%BF%9B%E9%98%B6%E9%85%8D%E7%BD%AE
+        extendMarkdown: md => {
+            md.use(require('@iktakahiro/markdown-it-katex'))
+        }
     },
 
     themeConfig: {
@@ -27,12 +37,15 @@ module.exports = {
                     { text: '开发', link: '/pages/notes/dev/' },
                     { text: '运维', link: '/pages/notes/o_m/' },
                     { text: 'C++', link: '/pages/notes/cpp/' },
+                    { text: '数学', link: '/pages/notes/math/' },
                 ]
             },
             { text: 'Blogs', link: '/pages/blogs/' },
             { text: '关于', link: '/pages/about/' },
             // { text: 'Front Matter', link: '/pages/front_matter.md' }
         ],
+
+
 
         // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
         repo: '12Tall/12tall.github.io.git',
