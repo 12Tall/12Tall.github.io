@@ -41,6 +41,7 @@ module.exports = {
                 ]
             },
             { text: 'Blogs', link: '/pages/blogs/' },
+            { text: '自动控制原理', link: '/pages/notes/ctrl/' },
             { text: '关于', link: '/pages/about/' },
             // { text: 'Front Matter', link: '/pages/front_matter.md' }
         ],
