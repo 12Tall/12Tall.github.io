@@ -12,7 +12,7 @@ sidebar: auto
 - [在网页中加载文件](./loadfile/README.md)  
 - [log4js](./log4js/README.md)  
 - [vue-next](./vue-next/README.md)
-
+- [VOSK 语音转写](./vosk/README.md)
 
 ## Python  
 - [Matplotlib](matplotlib/README.md)  
