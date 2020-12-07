@@ -8,6 +8,7 @@ sidebar: auto
 以下按照配置步骤的先后排序  
 - [DNS 服务器](./windows_server_2019/01_dns.md)  
 - [AD 域](./windows_server_2019/02_ad.md)
+- [LDAP](./ldap/README.md)
 
 ## 路由与交换  
 - [eve-ng安装与镜像导入](./r_s/eve-ng安装与镜像导入.md)  
