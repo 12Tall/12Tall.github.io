@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     }
 
     // 开启远程线程
-    CreateRemoteThread(hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)FUN_ADDR, NULL, 0, &dwThread);  
+    hThread = CreateRemoteThread(hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)FUN_ADDR, NULL, 0, &dwThread);  
     /**
     * hProcess：目标进程的句柄
     * lpThreadAttributes：安全描述符的结构体指针，填 NULL 即可
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
     FARPROC func1 = GetProcAddress(hModule, "LoadLibraryA");
     
     // 在开启远程线程时，执行LoadLibraryA，加载my_dll.dll
-    CreateRemoteThread(hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)func1, pDllName, 0, &dwThread);
+    hThread = CreateRemoteThread(hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)func1, pDllName, 0, &dwThread);
     if (hThread == NULL)
     {
         printf("can not create remote thread");
@@ -229,7 +229,11 @@ DWORD GetPid(const char *strProcessName)
 
     return pe32.th32ProcessID;
 }
-```
+```  
+
+## 注意事项  
+1. 对于32 位的目标进程，应当将源码编译为32 位的可执行程序然后注入。否则不会有任何结果；  
+2. 对于MinGW 来说，仅支持32 位gcc；而Mingw64 仅支持64 位。虽然可以通过`-m[32|64]` 指定编译时的目标架构，但是会报异常。  
 
 ## 参考连接  
 1. [Win32创建远程线程](https://www.cnblogs.com/DarkBright/p/10820582.html)

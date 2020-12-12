@@ -4,7 +4,11 @@ sidebar: auto
 ---  
 
 # 运维   
-## Windows Server   
+## Windows 
+### Win10 Pro  
+- [WSL](./wsl.md)
+
+### Server   
 以下按照配置步骤的先后排序  
 - [DNS 服务器](./windows_server_2019/01_dns.md)  
 - [AD 域](./windows_server_2019/02_ad.md)
