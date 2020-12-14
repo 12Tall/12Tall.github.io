@@ -5,7 +5,8 @@ sidebar: auto
 
 # 开发  
 
-- [WSL](./wsl.md)
+- [WSL](./wsl.md)  
+- [Gogs](./gogs.md)
 
 ## Javascript  
 - [AudioContext](./audiocontext.md)  
