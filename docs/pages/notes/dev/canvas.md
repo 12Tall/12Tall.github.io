@@ -160,6 +160,16 @@ Canvas 的状态以栈的形式存储
 ```html
 <canvas style="border:1px solid;" id="canvas_demo" width="640" height="400">您的浏览器不支持Canvas</canvas>
 
+
+<div>
+  <oscilloscope-01/>
+</div>
+
+
+这个示例是通过`setInterval` 定时器触发的，略显卡顿，感觉并不如`window.requestAnimationFrame()` 流畅，而且是通过改变相位`phi` 来使画面动起来，有点类似于普通的示波器，但是没有达到通过改变`t` 的值来生成动画。
+
+PS: 连续改变周期`w` 会有好玩的现象发生哦。
+
 <script>
 export default{
     data(){

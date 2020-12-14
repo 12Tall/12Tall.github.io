@@ -35,8 +35,8 @@ module.exports = {
             {
                 text: 'Notes', items: [
                     { text: '开发', link: '/pages/notes/dev/' },
-                    { text: '运维', link: '/pages/notes/o_m/' },
-                    { text: 'C++', link: '/pages/notes/cpp/' },
+                    { text: '运维', link: '/pages/notes/运维/' },
+                    { text: 'C/C++', link: '/pages/notes/cpp/' },
                     { text: '数学', link: '/pages/notes/math/' },
                 ]
             },

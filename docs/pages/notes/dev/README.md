@@ -4,29 +4,31 @@ sidebar: auto
 ---  
 
 # 开发  
+
+- [WSL](./wsl.md)
+
 ## Javascript  
-- [AudioContext](./audiocontext/README.md)  
-- [Canvas](./canvas/README.md) 
-- [WebSocket](./websocket/README.md)   
-- [Shell](./shell/README.md)  
-- [在网页中加载文件](./loadfile/README.md)  
-- [log4js](./log4js/README.md)  
-- [vue-next](./vue-next/README.md)
-- [VOSK 语音转写](./vosk/README.md)
+- [AudioContext](./audiocontext.md)  
+- [Canvas](./canvas.md) 
+- [WebSocket](./websocket.md)   
+- [Shell](./shell.md)  
+- [在网页中加载文件](./loadfile.md)  
+- [log4js](./log4js.md)  
+- [vue-next](./vue-next.md)
+- [VOSK 语音转写](./vosk.md)
 
 ## Python  
-- [Matplotlib](matplotlib/README.md)  
+- [Matplotlib](matplotlib.md)  
+- [ldap](./ldap.md)
    
 
 ## 虚拟机  
-- [CHIP-8](./vm/chip-8/README.md)  
-- [x86](./vm/x86/README.md)  
+- [CHIP-8](./vm/chip-8.md)  
+- [x86](./vm/x86.md)  
 
 ## Windows 服务  
-- [.NetCore 开发Windows 服务](./service/worker.md)
-- [node-windows](./service/node-windows.md)
+- [.NetCore 开发Windows 服务](./worker.md)
+- [node-windows](./node-windows.md)
 
 
-## 示波器  
-- [01 canvas 显示正弦波](./oscilloscope/01.md)
 
