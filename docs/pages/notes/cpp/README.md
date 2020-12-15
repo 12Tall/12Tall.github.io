@@ -6,6 +6,7 @@ sidebar: auto
 
 ## 常见问题  
 - [C 与C++ 互相调用](./C_Cpp互相调用.md)  
+- [Windows 下C 调用Golang](./c_calling_go.md)
 
 ## 系统编程  
 - [Mingw 制作dll](./mingw_dll.md)  
