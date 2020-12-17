@@ -10,7 +10,8 @@ sidebar: auto
 
 ## 系统编程  
 - [Mingw 制作dll](./mingw_dll.md)  
-- [远程线程注入dll](./远程线程注入dll.md)
+- [远程线程注入dll](./远程线程注入dll.md)  
+- [通过远程线程加载golang 生成的dll](./c_dll_calling_go.md)
 
 
 
