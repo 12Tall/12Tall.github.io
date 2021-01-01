@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches: 
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with: 
+          persist-credentials: false
+          
+      - name: Install and Build
+        run: |
+          yarn  
+          yarn run docs:build
+      - name: Deploy  
+        run: |
+          cd ./docs/.vuepress/dist/
+          git config --global user.name "${GITHUB_ACTOR}"
+          git init
+          git add -A
+          git commit -m "Auto Deploy"
+          git push -f "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
