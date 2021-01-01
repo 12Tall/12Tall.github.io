@@ -6,7 +6,8 @@ sidebar: auto
 # 开发  
 
 - [WSL](./wsl.md)  
-- [Gogs](./gogs.md)
+- [Gogs](./gogs.md)  
+- [GitHub Actions](./github-actions.md)
 
 ## Javascript  
 - [AudioContext](./audiocontext.md)  
