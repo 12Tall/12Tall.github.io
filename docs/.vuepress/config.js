@@ -32,15 +32,15 @@ module.exports = {
         // search: false,
         // searchMaxSuggestions: 10,
         nav: [
-            {
-                text: 'Notes', items: [
-                    { text: '开发', link: '/pages/notes/dev/' },
-                    // { text: '运维', link: '/pages/notes/运维/' },
-                    { text: 'C/C++/Go', link: '/pages/notes/cpp/' },
-                    // { text: '数学', link: '/pages/notes/math/' },
-                ]
-            },
-            { text: 'Blogs', link: '/pages/blogs/' },
+            // {
+            //     text: 'Notes', items: [
+            //         { text: '开发', link: '/pages/notes/dev/' },
+            //         // { text: '运维', link: '/pages/notes/运维/' },
+            //         { text: 'C/C++/Go', link: '/pages/notes/cpp/' },
+            //         // { text: '数学', link: '/pages/notes/math/' },
+            //     ]
+            // },
+            // { text: 'Blogs', link: '/pages/blogs/' },
             // { text: '自动控制原理', link: '/pages/notes/ctrl/' },
             { text: '关于', link: '/pages/about/' },
             // { text: 'Front Matter', link: '/pages/front_matter.md' }

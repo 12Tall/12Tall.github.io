@@ -1,5 +1,5 @@
 ---
-title: 新年快乐🌼
+title: 🌼
 ---
 
-<effect-timer></effect-timer>
+<timer></timer>

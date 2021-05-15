@@ -12,10 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "@iktakahiro/markdown-it-katex": "^4.0.1",
-    "@vuepress/plugin-active-header-links": "^1.7.1",
-    "@vuepress/plugin-back-to-top": "^1.5.4",
-    "@vuepress/plugin-medium-zoom": "^1.5.4",
+    "@vuepress/plugin-active-header-links": "^1.8.2",
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "@vuepress/plugin-medium-zoom": "^1.8.2",
     "nprogress": "^0.2.0",
-    "vuepress": "^1.5.4"
+    "vuepress": "^1.8.2"
   }
 }
