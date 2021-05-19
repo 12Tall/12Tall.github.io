@@ -1,8 +1,8 @@
 ---
-title: (｡･∀･)ﾉﾞ嗨
+title: 关于本站
 home: true
 heroText: null
 tagline: null
 ---
 
-<timer></timer>
+<about></about>

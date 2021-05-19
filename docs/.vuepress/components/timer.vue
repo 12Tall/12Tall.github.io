@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <div class="leaves">
-      <span>🌧🌧🌧</span><br />
-      <span>回望当初</span><br />
-      <span>那时我也一定一直在</span><br />
-      <span>训练自己迈步</span><br />
-      <span>如果有一天</span><br />
-      <span>能够走得更稳更远了</span><br />
-      <span>...</span><br />
-      <span>就去见她吧</span><br />
-    </div>
-    <div class="flower">
-      {{ day }} ❀ {{ fix(hour) }}:{{ fix(minute) }}:{{ fix(seccond) }}
-    </div>
+  <div class="leaves">
+    <span>🌧🌧🌧</span><br />
+    <span>回望当初</span><br />
+    <span>那时我也一定一直在</span><br />
+    <span>训练自己迈步</span><br />
+    <span>如果有一天</span><br />
+    <span>能够走得更稳更远了</span><br />
+    <span>...</span><br />
+    <span>就去见她吧</span><br />
+  </div>
+  <div class="flower">
+    {{ day }} ❀ {{ fix(hour) }}:{{ fix(minute) }}:{{ fix(seccond) }}
   </div>
 </template>
 

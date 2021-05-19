@@ -1,22 +1,22 @@
 {
   "name": "12tall.github.io",
   "version": "1.0.0",
-  "description": "",
+  "description": "blog",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:build": "vuepress build docs",
-    "docs:dev": "vuepress dev docs"
+  "repository": "git@github.com:12Tall/12tall.github.io.git",
+  "author": "12tall <fb.ouyang@outlook.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.14",
+    "vuepress-vite": "^2.0.0-beta.14"
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
   "dependencies": {
-    "@iktakahiro/markdown-it-katex": "^4.0.1",
-    "@vuepress/plugin-active-header-links": "^1.8.2",
-    "@vuepress/plugin-back-to-top": "^1.8.2",
-    "@vuepress/plugin-medium-zoom": "^1.8.2",
-    "element-ui": "^2.15.1",
-    "nprogress": "^0.2.0",
-    "vuepress": "^1.8.2"
+    "@vuepress/plugin-register-components": "^2.0.0-beta.14",
+    "@vuepress/utils": "^2.0.0-beta.11",
+    "element-plus": "^1.0.2-beta.44"
   }
 }
