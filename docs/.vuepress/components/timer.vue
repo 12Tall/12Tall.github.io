@@ -52,7 +52,7 @@ export default {
       self.timediff();
     }, 500);
   },
-  destroyed: function () {
+  unmounted: function () {
     clearInterval(this.interval);
   },
 };

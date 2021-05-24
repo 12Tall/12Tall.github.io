@@ -7,6 +7,10 @@ module.exports = {
         description: "欢迎光临12tall 的空间"
     },
     head: [
+        // 禁用浏览器缓存，否则可能会导致Edge 热更新异常
+        ['meta', { "http-equiv": "Expires", content: "0" }],
+        ['meta', { "http-equiv": "Cache-Control", content: "no-cache" }],
+        ['meta', { "http-equiv": "Pragma", content: "no-cache" }],
         // 资源文件的根目录在public
         // markdown 中文件的绝对路径也在public  
         // ['link', { rel: 'icon', href: '/imges/logo.png' }]
@@ -17,9 +21,13 @@ module.exports = {
         home: '/',  // 首页的路径
         navbar: [
             {
+                text: '神经网络',
+                link: '/neural-network/'
+            },
+            {
                 text: '关于',
                 link: '/about.md'
-            }
+            },
         ],  // 导航栏
         logo: '/images/logo.png',  // 导航栏左端logo 图片
         repo: 'https://github.com/12Tall/12tall.github.io',
