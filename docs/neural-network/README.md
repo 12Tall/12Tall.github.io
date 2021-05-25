@@ -77,7 +77,7 @@ k_b=polyfit(x,y,1)
 
 最终曲线的方程为`y=1.0338x+0.9054`，和想象中稍微有些出入，但是随着采样点的增多，该数值会越来越准确。  
 
-### 最小二乘法取最小值  
+### 梯度下降  
 除了使用`Matlab` 等工具外，还有没有其他办法可以求`D`的最小值呢？分别求`D`关于`k,b`的偏导数，对于这个例子，偏导数全部为`0`时，`D`取到最小值。  
 然而对于计算机来说，求数值解要比求解析解更加简单，毕竟计算机就是用来计算的、而不是用来思考的。  
 
@@ -122,16 +122,28 @@ k_b=polyfit(x,y,1)
 ![误差函数](./img/03_lsm/diff-function.svg)
 
 
-## 矩阵与行列式  
-来看一个鸡兔同笼问题：今有鸡兔同笼，共有头36，脚48，问鸡、兔各几何？易得兔12、鸡24；再问：今笼有俩鸡仨兔，问有头、脚各几何？于是我们可以列出下列表格：  
+## 向量与矩阵  
+来看一个鸡兔同笼问题：今有鸡兔同笼，共有头36，脚48，问鸡、兔各几何？易得兔12、鸡24；再问：今笼有俩鸡仨兔，问有头、脚各几何？
 
-![矩阵乘法](./img/04_matrix/multiply.svg)
+### 特征与向量  
+在此例中，我们可以分别用一组数据来代表鸡和兔的特征：`1（头），2（脚）；1（头），4（脚）`。我们一般管这样一组数据叫做**特征向量**。顾名思义，表示特征的有方向的量。  
+![向量](./img/04_matrix/vector.svg)  
 
-那我们将特征表格AB 按照某种规律进行运算，就能得到最终的规律。先计算头的数量`h=1x2+1x3=5`，再计算脚的数量`f=2x2+4x3=16`。可以总结出，A 的每一行与B 的每一列的对应项相乘之和就是最后的结果，记作矩阵的乘法`C=AB`。  
-至于为什么不行列转置，因为这是约定的记法，就像2 记作2 而不是记作3 一样。  
+对于两个向量张成的空间，我们一般称为面积；三维的叫做体积。面积可以表示空间的大小，也可以表示为两个向量平行的程度。因为`S=|a||b|sin(α)`，`α`表示向量`a,b`之间的夹角。向量正确的写法应该是字母上面有一个箭头，但是`markdown` 内似乎不支持这种写法：![向量的写法](./img/04_matrix/std-vector.svg)
+
+### 矩阵与行列式  
+回到最初的问题，我们可以列一个表格A 来表示鸡兔两个特征向量的组合；用另一个表格表示笼的特征向量`2（鸡）3（兔）`。然后问题就变成了，我们需要用`头，脚`来表示笼的特征。    
+
+![矩阵乘法](./img/04_matrix/mul.svg)
+
+先计算头的特征`h=1x2+1x3=5`，再计算脚的特征`f=2x2+4x3=16`。可以总结出，A 的每一行与B 的每一列的对应项相乘之和就是最后的结果，记作矩阵的乘法`C=AB`。    
+看到这里是不是觉得特熟悉。矩阵乘法里面每一行的运算和多项式的运算形式一模一样：![多项式](./img/04_matrix/polynomial.svg)  
+提示：把`x` 看作行、把`k` 看作列。
 
 ### Numpy中的矩阵运算  
 在`numpy` 中定义了一系列的矩阵运算函数，这里简单整理几个常用的，后续再慢慢增加。  
+
+
 ```python
 import numpy as np  
 x = np.array([1,2,3])  # 定义行向量
@@ -167,9 +179,191 @@ np.around(z)  # 四舍五入
 z.flatten()  # 平坦化，按某种顺序转化为行向量，一般是按C 数组的方式  
 ```
 
+## 单神经元网络  
+其实神经网络要做的，也只是构造一个函数，去拟合一段数据的变化情况罢了。只不过我们让电脑利用[梯度下降](#梯度下降)的办法逐渐调整最优系数组合。下面我们还是以[最小二乘法](#最小二乘法)中的数据为例，来看看神经网络的构造过程与工作原理。  
 
+### 梯度下降的最小二乘法  
+![最小二乘法](./img/02_statistic/least-squares-method.svg)  
+首先提取计算需要用到的信息：  
+- 采样次数`n`：5  
+- 输入特征向量的维度`m`：1  
+- 输入数据`X`：`[0, 2, 3, 4, 5]`  
+- 输出数据的维度：1  
+- 输出数据`Y`：`[1, 2.5, 4.5, 5, 6]`  
 
+然后针对**某一次采样数据**构造函数传递的过程，这里因为输出结果也是线性的，所以激活函数可以取`a(z)=z`，即不做任何处理，相当于一个透明环节。其导数值恒为`1`    
+![最小二乘法函数传递](./img/05_single_nerual_network/lsm-function-structure.svg)  
+而我们的样本数量为5，这样每次计算会得到5 个误差值。一般我们取其平均值作为最终的误差。  
 
+下面是是`Python` 的代码，可以看到随着迭代次数的增加，误差逐渐减小。  
+```python
+import numpy as np
+
+# 初始化参数  
+x = np.array([0,2,3,4,5]).reshape(5, -1)
+y = np.array([1, 2.5, 4.5, 5, 6]).reshape(5, -1)
+k,b=(0,0)
+delta=0.01  # 步长不宜过大，否则递归下降的过程会产生震荡
+
+# 线性过程：z=kx+b
+def Z(x):      
+    return k*x+b
+def dz_dk(x):  # z对k 的偏导
+    return x
+def dz_db(x):  # z对b 的偏导
+    return 1
+
+# 激活函数：a=z 由散点图可设激活函数是线性的
+def Act(z):    
+    return z
+def dAct(z):   # 激活函数的偏微分
+    return 1
+
+# 误差函数：(y-a)^2，最小二乘法
+def Diff(a, y):    
+    return (y-a)*(y-a)
+def dDiff(a, y):
+    return -2*(y-a)
+
+# 反复迭代梯度下降过程
+for i in range(10000):
+    z = Z(x)       # 求取每一个节点的计算结果
+    a = Act(z)
+    d = Diff(a, y)
+    # 求取误差函数对k,b 的偏微分，每次采样都是不同的
+    dd_dk = dDiff(a, y)*dAct(z)*dz_dk(x)  
+    dd_db = dDiff(a, y)*dAct(z)*dz_db(x)
+    # 梯度下降：每次迭代都会计算四次采样下的平均值
+    k = k-delta*dd_dk.mean(axis=0)
+    b = b-delta*dd_db.mean(axis=0)
+    # 输出第i 次迭代的结果
+
+print(k, b, d.mean(axis=0))
+# [1.03378378] [0.90540541] [0.09662162]
+```
+
+### 图片中是否有猫  
+此题为吴恩达深度学习的课后编程题[Logistic Regression with a Neural Network mindset](https://github.com/Kulbear/deep-learning-coursera/blob/master/Neural%20Networks%20and%20Deep%20Learning/Logistic%20Regression%20with%20a%20Neural%20Network%20mindset.ipynb)。根据图片中的像素信息来判断图片中是否有猫。  
+
+首先还是梳理关键信息：  
+- 从图片中读取数据，每张图片包含`3*64*64` 字节数据，也就是有`3*64*64`个维度  
+- 用来训练的图片有`209`张；测试用的`50`张  
+- 输出是真假，是非线性的，所以需要一个非线性话函数，这里我们用`sigmoid`函数。为了便于计算，一般我们采用`D(a,y)=-(yln(a)-(1-y)ln(1-a))`作为误差函数。  
+
+![Sigmoid函数图像](./img/05_single_nerual_network/sigmoid.svg)
+
+下面是函数传递的示意图，仅以二维输入示意，实际输入应该是`3*64*64`维：  
+![函数结构](./img/05_single_nerual_network/function-structure.svg)
+
+除了修改数据初始化、激活函数与误差函数外，我们可以几乎照搬[梯度下降的最小二乘法](#梯度下降的最小二乘法)里面的代码。  
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+from lr_utils import load_dataset
+
+# 数据加载过程题目已经给出 
+delta=0.1  
+dim = 3*64*64  # 图片数据维度  
+k = np.zeros((dim, 1))
+b = np.zeros((1, 1))
+len_train = 209
+len_test = 50
+
+# 将输入数据归一化，更有利于避免指数运算中的数据溢出
+x = (train_set_x_orig.reshape(-1, dim))/255-0.5
+y = train_set_y.reshape(-1, 1)
+# 测试数据  
+tx = (test_set_x_orig.reshape(-1, dim))/255-0.5
+ty = test_set_y.reshape(-1, 1)
+
+# 线性过程：z=kx+b
+def Z(x):      
+    return k*x+b
+def dz_dk(x):  # z对k 的偏导
+    return x
+def dz_db(x):  # z对b 的偏导
+    return 1
+
+# 激活函数进行非线性化
+def Act(z):
+    return 1/(1+np.exp(-z))
+def dAct(z):  # 激活函数求导
+    a = Act(z)
+    return a*(1-a)
+
+# 对数误差函数及其导数
+def Diff(a, y):
+    return -(y*np.log(a)+(1-y)*np.log(1-a))
+def dDiff(a, y):
+    return (a-y)/a/(1-a)
+
+# 反复迭代梯度下降过程
+for i in range(2000):
+    z = Z(x)
+    a = Act(z)
+    d = Diff(a, y)
+
+    # 这里除以一个较大的数，也是为了避免指数运算时的数据爆炸
+    dk = np.dot(dZ_dk(x).T, dDiff(a, y)*dAct(z))/len_train
+    db = (dDiff(a, y)*dAct(z)).sum()/len_train
+    k = k-delta*dk
+    b = b-delta*db
+
+# 以下代码仅作结果分析只用，并不影响神经网络本身的计算
+def Res(x, y):
+    z = Z(x)
+    a = Act(z)
+    diff = np.around(np.abs(a-y))
+    # 输出准确率
+    print(1-diff.sum()/len(x))
+    return diff
+
+diff = Res(tx, ty).flatten()
+print(ty)
+
+# 绘制识别错误的图像
+plt.figure()
+for i in range(len(diff)):
+    if diff[i] > 0.5:
+        plt.subplot(5,10,i+1)
+        plt.imshow(test_set_x_orig[i].reshape((64, 64, 3)))
+
+plt.show()
+```
+通过代码结果可以看出来，模型对训练集的拟合非常好，而对于测试集的准确度最高只有68%，并且像是对训练集过度拟合，以至于只能识别范围比较窄的区域，这可能已经是单个神经元能达到的极限了。
+
+### 实用工具  
+在上文代码中，我们可以通过修改某些参数，例如学习率\math-container{𝛿}，来用更少的训练次数得到更好的结果。那么我们还可以通过让机器在一个范围内调整某几个参数、记录并绘制误差随迭代次数的关系图，来帮助我们选择更合适的模型参数。  
+```python
+# 1. 显示图形
+import matplotlib.pyplot as plt
+# 1.1 显示单张图片
+plt.imshow(img.reshape((w, h, 3))) # RGB 图像的宽和高
+# 1.2 显示多张图片
+# 绘制识别错误的图像
+plt.figure()
+for img in range(imgData):
+        plt.subplot(n,m,i+1)  # 显示在nxm 张图片的第i 个位置
+        plt.imshow(img.reshape((w, h, 3))) # RGB 图像的宽和高
+plt.show()
+
+# 2. 绘制曲线图
+data = np.squeeze(orgData)  # 删除无关的维度
+plt.plot(data)              # 绘图
+plt.ylabel('y')             # 添加图片信息
+plt.xlabel('x')
+plt.title("title")
+plt.show()
+
+# 3. 读取图片信息
+from PIL import Image
+image = Image.open(my_file).convert('RGB')
+image = np.array(image)
+```
+Python 不难学，难的是掌握相关的库函数与基础的理论知识。知其所以然后才能用好Python，所以Python 是一个让人讨厌的强大的工具。  
+
+## 深度学习神经网络  
 
 
 
