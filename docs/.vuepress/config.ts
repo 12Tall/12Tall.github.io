@@ -7,6 +7,7 @@ module.exports = {
         description: "欢迎光临12tall 的空间"
     },
     head: [
+        ['meta', { charset: 'utf-8' }],
         // 禁用浏览器缓存，否则可能会导致Edge 热更新异常
         ['meta', { "http-equiv": "Expires", content: "0" }],
         ['meta', { "http-equiv": "Cache-Control", content: "no-cache" }],
