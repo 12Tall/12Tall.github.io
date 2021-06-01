@@ -557,7 +557,7 @@ def model(X):
     Z3 = np.dot(A2, W3)+b3
     A3 = sigmoid(Z3)
     return np.around(A3)
-    
+
 pdb(lambda x: model(x), X, Y)
 c = (1-np.sum(np.abs(Y-model(X)))/len(X))*100
 plt.title('2 Hidden Layer with %s-%s nodes(%s%%)' % (d1,d2, c))
@@ -571,4 +571,287 @@ plt.title('2 Hidden Layer with %s-%s nodes(%s%%)' % (d1,d2, c))
 ![单隐藏层包含三个神经元](./img/06_deep_learning/single-hidden-layer-3-nodes.svg)   
 
 更多层的神经网络也是以此类推，这便是深度学习神经网络的基本原理。至于以后，基本是基于此原理的扩展与修补。  
+
+## 构造自己的神经网络  
+根据之前的学习经验，我们很容易将神经网络模型划分为`3`种层：输入层、隐藏层、输出层。其中：  
+- 输入层：只是将采集到的数据原封不动地输出给隐藏层  
+- 隐藏层：进行正向过程与反向过程运算  
+- 输出层：计算误差函数，及其导数  
+
+每一层的输出就是下一层的输入。于是我们就能抽象出一个通用的“层”的概念矩阵：  
+
+层-属性|dim/维度|in/输入|prev/上一级|w/权重|b/常数|actv/激活函数|grad/导数|l_r/学习率|loss/误差函数|out/输出  
+:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:  
+输入层|√|√| | | | | | | |√  
+隐藏层|√|√|√|√|√|√|√|√| |√  
+输出层|√|√|√| | | |√| |√|√  
+
+<CodeGroup>
+<CodeGroupItem title="Layer">
+
+```python{45-47,60,73,89,94}
+import numpy as np
+###############################################################
+# Layers                                                      #
+#  - Base                                                     #
+#    - InputLayer                                             #
+#    - HiddenLayer                                            #
+#    - OutputLayer                                            #
+###############################################################
+
+
+class Layer(object):
+    def __init__(self):
+        pass
+
+    def forward(self):
+        pass
+
+    def backward(self, grad: np.array):
+        pass
+
+
+class InputLayer(Layer):  
+    def __init__(self, dataIn: np.array):
+        super().__init__()
+        self.dim = dataIn.shape[1]
+        self.dataIn = dataIn
+
+    def setDataIn(self, dataIn: np.array):
+        self.dataIn = dataIn
+
+    def forward(self):
+        return self.dataIn
+
+    def backward(self, grad: np.array):
+        return
+
+
+class HiddenLayer(Layer):  # 每一层都可以独立设置学习率
+    def __init__(self, prevLayer: Layer, dim: int, learning_rate=0.01):
+        assert(isinstance(prevLayer, Layer))
+        super().__init__()
+        self.prev = prevLayer
+        self.dim = dim
+        self.learning_rate = learning_rate
+        # 上一节点的维度与本节点的维度共同确定参数矩阵的维度
+        self.w = np.random.randn(prevLayer.dim, self.dim) * 0.01
+        self.b = np.zeros(shape=(1, self.dim))
+        self.actv = X()  # 默认无线性化环节
+
+    def setActivation(self, activation: Activation):
+        self.actv = activation
+
+    def regenWeight(self, method):
+        self.w = method(self.prev.dim, self.dim)
+
+    def regenB(self, method):
+        self.w = method(self.dim)
+
+    def forward(self):
+        self.dataIn = self.prev.forward()  # 递归调用上一层的正向过程
+        self.z = np.dot(self.dataIn, self.w)+self.b
+        self.a = self.actv(self.z)
+        return self.a
+
+    def backward(self, grad: np.array):
+        self.dA = grad
+        self.dZ = np.multiply(self.dA, self.actv.gradient(self.z))
+        self.dW = np.dot(self.dataIn.T, self.dZ)/len(self.dZ)
+        self.db = self.dZ.mean(axis=0)/len(self.dZ)
+        dDataIn = np.dot(self.dZ, self.w.T)
+        self.w = self.w - self.learning_rate * self.dW
+        self.b = self.b - self.learning_rate * self.db
+        self.prev.backward(dDataIn)  # 递归调用上一层的反向过程
+        return
+
+
+class OutputLayer(Layer):
+    def __init__(self, prevLayer: Layer, dataOut: np.array, loss=Sigmoid_Loss):
+        assert(isinstance(prevLayer, Layer))
+        super().__init__()
+        self.prev = prevLayer
+        self.dataOut = dataOut
+        self.setLoss(loss)
+
+    def setLoss(self, loss: Loss):  # 设置误差函数
+        self.loss = loss(self.dataOut)
+
+    def forward(self):
+        loss = self.loss(self.prev.forward())
+        return loss
+
+    def backward(self):
+        dLoss = self.loss.gradient(self.prev.forward())
+        self.prev.backward(dLoss)
+
+    def predict(self):  # 预测值，其实就是最后一个隐藏层的输出
+        return self.prev.forward()
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Activation">
+
+```python{12-13,24,27}
+import numpy as np
+###############################################################
+# Activations                                                 #
+#  - Sigmoid                                                  #
+#  - Tanh                                                     #
+#  - ReLU                                                     #
+#  - LeakyReLU                                                #
+###############################################################
+
+# 每一个激活函数都会有其导函数的定义
+class Activation(object):
+    def __call__(self, z: np.array) -> np.array:
+        pass
+
+    def gradient(self, z: np.array) -> np.array:
+        pass
+
+
+class LeakyReLU(Activation):
+    def __init__(self, alpha=0.01) -> None:
+        self.alpha = alpha
+
+    def __call__(self, z: np.array) -> np.array:
+        return np.where(z > 0, z, self.alpha)
+
+    def gradient(self, z: np.array) -> np.array:
+        return np.where(z > 0, 1, self.alpha)
+
+
+class ReLU(LeakyReLU):
+    def __init__(self) -> None:
+        super().__init__(alpha=0)
+
+
+class Tanh(Activation):
+    def __init__(self) -> None:
+        pass
+
+    def __call__(self, z: np.array) -> np.array:
+        return np.tanh(z)
+
+    def gradient(self, z: np.array) -> np.array:
+        a = self.__call__(z)
+        return 1 - np.power(a, 2)
+
+
+class Sigmoid(Activation):
+    def __init__(self) -> None:
+        return
+
+    def __call__(self, z: np.array) -> np.array:
+        return 1/(1+np.exp(-z))
+
+    def gradient(self, z: np.array) -> np.array:
+        a = self.__call__(z)
+        return a*(1-a)
+
+class X(Activation):  # 什么都不做，无非线性化环节
+    def __init__(self) -> None:
+        return
+
+    def __call__(self, z: np.array) -> np.array:
+        return z
+
+    def gradient(self, z: np.array) -> np.array:
+        return 1
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Loss">
+
+```python
+import numpy as np
+###############################################################
+# Loss                                                        #
+#  - Sigmoid_Loss                                             #
+#  - SoftMax(todo)                                            #
+###############################################################
+
+
+class Loss(object):
+    def __init__(self, dataOut) -> None:
+        self.dataOut = dataOut
+
+    def __call__(self, a: np.array) -> np.array:
+        pass
+
+    def gradient(self, a: np.array) -> np.array:
+        pass
+
+
+class Sigmoid_Loss(Loss):
+    def __init__(self, dataOut) -> None:
+        super().__init__(dataOut)
+
+    def __call__(self, a: np.array) -> np.array:
+        y = self.dataOut
+        return -(y*np.log(a)+(1-y)*np.log(1-a))
+
+    def gradient(self, a: np.array) -> np.array:
+        y = self.dataOut
+        return (a-y)/a/(1-a)
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Usage">
+
+```python{10-16,18-21,23-25}
+import numpy as np
+import matplotlib.pyplot as plt
+from testCases import *
+from planar_utils import plot_decision_boundary, sigmoid, load_planar_dataset, load_extra_datasets
+
+np.random.seed(1)  # 初始化随机数
+X, Y = load_planar_dataset()
+X, Y = X.T, Y.T  # 行列转置
+
+# 构建神经网络模型
+layerIn = InputLayer(X)
+layerHidden1 = HiddenLayer(layerIn, 4)
+layerHidden1.setActivation(Tanh())
+layerHidden2 = HiddenLayer(layerHidden1, 1)
+layerHidden2.setActivation(Sigmoid())
+layerOut = OutputLayer(layerHidden2, Y)
+
+# 循环正向过程与反向过程
+for i in range(40000):
+    layerOut.forward()
+    layerOut.backward()
+
+# 更换测试数据集，并输出预测值（这里用的还是训练集）
+layerIn.setDataIn(X)
+res = np.around(layerOut.predict())
+
+# 验证正确率
+c = 1-np.sum(np.abs(Y-res))/len(X)
+
+# 绘图 #
+# 设置绘图范围
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+h = 0.01  # 步长
+# 生成绘图区域网格
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                     np.arange(y_min, y_max, h))
+# 将网格坐标设置为目标数据集，并生成预测值
+layerIn.setDataIn(np.c_[xx.ravel(), yy.ravel()])
+Z = np.around(layerOut.predict())
+Z = Z.reshape(xx.shape)
+# 绘制等高线图
+plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral)
+plt.ylabel('x2')
+plt.xlabel('x1')
+plt.scatter(X[:, 0], X[:, 1], c=Y, cmap=plt.cm.Spectral)
+plt.title('My NN model[accuracy=%s%%]' % ( c))
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+这一节的代码缺少注释，但仔细阅读发现并不复杂，也算是给自己的一份`6.1🎁`吧~  
 
