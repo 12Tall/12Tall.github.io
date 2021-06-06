@@ -570,8 +570,6 @@ plt.title('2 Hidden Layer with %s-%s nodes(%s%%)' % (d1,d2, c))
 通过测试不同的神经元数量，可以得到不同的边界图，如下：  
 ![单隐藏层包含三个神经元](./img/06_deep_learning/single-hidden-layer-3-nodes.svg)   
 
-更多层的神经网络也是以此类推，这便是深度学习神经网络的基本原理。至于以后，基本是基于此原理的扩展与修补。  
-
 ## 构造自己的神经网络  
 根据之前的学习经验，我们很容易将神经网络模型划分为`3`种层：输入层、隐藏层、输出层。其中：  
 - 输入层：只是将采集到的数据原封不动地输出给隐藏层  
@@ -658,7 +656,7 @@ class HiddenLayer(Layer):  # 每一层都可以独立设置学习率
         self.dA = grad
         self.dZ = np.multiply(self.dA, self.actv.gradient(self.z))
         self.dW = np.dot(self.dataIn.T, self.dZ)/len(self.dZ)
-        self.db = self.dZ.mean(axis=0)/len(self.dZ)
+        self.db = self.dZ.mean(axis=0)
         dDataIn = np.dot(self.dZ, self.w.T)
         self.w = self.w - self.learning_rate * self.dW
         self.b = self.b - self.learning_rate * self.db
@@ -851,7 +849,119 @@ plt.title('My NN model[accuracy=%s%%]' % ( c))
 ```
 
 </CodeGroupItem>
+<CodeGroupItem title="Initialization">
+
+```python
+###############################################################
+# Initialization                                              #
+#  - HeInitialization                                         #
+###############################################################
+
+
+class HeInitialization(object):
+    def __init__(self, alpha: float) -> None:
+        super().__init__()
+        self.alpha = alpha
+
+    def __call__(self, prevDim: int, dim: int):
+        return np.random.randn(dim, prevDim).T * np.sqrt(2/prevDim)
+```
+
+</CodeGroupItem>
 </CodeGroup>
 
 这一节的代码缺少注释，但仔细阅读发现并不复杂，也算是给自己的一份`6.1🎁`吧~  
+
+### 图片中是否有猫（二）  
+依然是采用[图片中是否有猫](#图片中是否有猫)中的数据集，只不过这次要搭建层数更多的网络  
+```python
+import numpy as np
+from layer import InputLayer, HiddenLayer, OutputLayer, Sigmoid, LeakyReLU, ReLU, Tanh, Sigmoid_Loss
+from lr_utils import load_dataset
+
+train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, classes = load_dataset()
+trX = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1)/255
+trY = train_set_y_orig.reshape(train_set_x_orig.shape[0], -1)
+teX = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1)/255
+teY = test_set_y_orig.reshape(test_set_x_orig.shape[0], -1)
+
+np.random.seed(1)
+
+lIn = InputLayer(trX)
+lHi1 = HiddenLayer(lIn, 20, 0.0075)
+lHi1.setActivation(ReLU())
+lHi2 = HiddenLayer(lHi1, 7,  0.0075)
+lHi2.setActivation(ReLU())
+lHi3 = HiddenLayer(lHi2, 5,  0.0075)
+lHi3.setActivation(ReLU())
+lHi4 = HiddenLayer(lHi3, 1,  0.0075)
+lHi4.setActivation(Sigmoid())
+lOut = OutputLayer(lHi4, trY)
+
+for i in range(2500):
+    loss = lOut.forward()
+    lOut.backward()
+    if i % 100 == 0:
+        print(i, loss.sum()/len(loss))
+
+veriTrain = 1 - np.abs((np.around(lOut.predict())-trY)).sum()/len(trY)
+print(veriTrain)
+
+lIn.setDataIn(teX)
+veriTest = 1-np.abs((np.around(lOut.predict())-teY)).sum()/len(teY)
+print(veriTest)
+```
+上面代码在只有两个隐藏层时对训练集和测试集的精度分别为`1,0.72`，然而在增加隐藏层数量后，模型的精度却并未如预期一样增加，主要表现在随着层数的增加，梯度下降的速度变慢了。问题出在权重初始化。  
+
+```diff
+class HiddenLayer(Layer):  # 每一层都可以独立设置学习率
+    def __init__(self, prevLayer: Layer, dim: int, learning_rate=0.01):
+        #...
+        # 上一节点的维度与本节点的维度共同确定参数矩阵的维度
+-        self.w = np.random.randn(prevLayer.dim, self.dim) * 0.01
++        self.w = np.random.randn(prevLayer.dim, self.dim) / np.sqrt(prevLayer.dim)
+        # ...
+```  
+权重的大小会影响梯度下降的速度：如果权重过大，就会导致模型梯度下降速度变慢，也就是上面提到的问题；如果权重设置过小，则会导致模型过于简单，失去深度学习的意义。所以上文采用了`Xavier Initialization`：`随机数*1/sqrt(上一层维度)`。而对于`ReLU`激活函数，更推荐`He Initialization`：`随机数*sqrt(2/上一层维度)`，并且此方法在其他激活函数也相当好使。顺便提一句，我们给每一层预留了重置初始值的接口。只需修改简单的代码即可让我们的模型顺畅地跑起来：
+
+```python{5,8,11,14,17,24,27-31}
+# 仅记录修改的部分
+lIn = InputLayer(trX)
+lHi1 = HiddenLayer(lIn, 20, 0.0075)
+lHi1.setActivation(ReLU())
+lHi1.regenWeight(HeInitialization(2))  # 重新初始化权重
+lHi2 = HiddenLayer(lHi1, 7,  0.0075)
+lHi2.setActivation(ReLU())
+lHi2.regenWeight(HeInitialization(2))  # 重新初始化权重
+lHi3 = HiddenLayer(lHi2, 5,  0.0075)
+lHi3.setActivation(ReLU())
+lHi3.regenWeight(HeInitialization(2))  # 重新初始化权重
+lHi4 = HiddenLayer(lHi3, 1,  0.0075)
+lHi4.setActivation(Sigmoid())
+lHi4.regenWeight(HeInitialization(1))  # 重新初始化权重
+lOut = OutputLayer(lHi4, trY)
+
+costs=[]
+
+for i in range(2500):
+    loss = lOut.forward()
+    lOut.backward()
+    if i % 100 == 0:
+        print(i, loss.sum()/len(loss))
+        costs.append(loss.sum()/len(loss))
+
+# 绘制误差变化曲线
+plt.plot(np.squeeze(costs))
+plt.ylabel('cost')
+plt.xlabel('iterations (per tens)')
+plt.title("Learning rate =" + str(0.0075))
+plt.show()
+```
+
+得到结果如下：  
+![误差下降图](./img/07_my_dl_structure/loss.svg)
+
+之所以把这一节单独列出来，是因为这一节是对前面所有笔记的一个系统化总结，也是一个可以直接拿来用的成果。更多层的神经网络也是以此类推，这便是深度学习神经网络的基本原理。至于以后，基本是基于此原理的扩展与修补。  
+
+
 
