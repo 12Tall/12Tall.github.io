@@ -22,6 +22,10 @@ module.exports = {
         home: '/',  // 首页的路径
         navbar: [
             {
+                text: 'NodeJS',
+                children: ['/nodejs/n-api.md'],
+            },
+            {
                 text: '神经网络',
                 link: '/neural-network/'
             },
