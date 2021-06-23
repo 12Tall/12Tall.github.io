@@ -22,6 +22,10 @@ module.exports = {
         home: '/',  // 首页的路径
         navbar: [
             {
+                text: 'C/C++',
+                children: ['/c_cpp/vc-inline-asm.md'],
+            },
+            {
                 text: 'NodeJS',
                 children: ['/nodejs/n-api.md'],
             },
