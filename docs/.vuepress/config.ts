@@ -23,7 +23,7 @@ module.exports = {
         navbar: [
             {
                 text: 'C/C++',
-                children: ['/c_cpp/vc-inline-asm.md'],
+                children: ['/c_cpp/win32.md','/c_cpp/dll-injection.md','/c_cpp/vc-inline-asm.md'],
             },
             {
                 text: 'NodeJS',
